@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:news_app/screens/main_screen.dart';
 import 'common/app_theme.dart';
-
+import 'common/theme_controller.dart';
 
 void main() {
   runApp(const NewsApp());
@@ -11,15 +13,18 @@ class NewsApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'News App',
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.system,
-      home: const Scaffold(
-        body: Center(
-          child: Text('News App'),
+    return ScreenUtilInit(
+      designSize: const Size(393, 852),
+      splitScreenMode: true,
+      minTextAdapt: true,
+      builder: (context, child) => ValueListenableBuilder<ThemeMode>(
+        valueListenable: ThemeController.themeMode,
+        builder: (context, mode, _) => MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode: mode,
+          home: const MainScreen(),
         ),
       ),
     );

@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'app_colors.dart';
 
 class AppTheme {
+  AppTheme._();
+
   static final ThemeData lightTheme = ThemeData(
+    dividerColor: AppColors.lightPrimary,
+    dividerTheme: DividerThemeData(color: AppColors.lightPrimary),
     useMaterial3: true,
     brightness: Brightness.light,
     scaffoldBackgroundColor: AppColors.lightBackground,
@@ -12,18 +16,21 @@ class AppTheme {
       surface: AppColors.lightBackground,
       onSurface: AppColors.lightText,
     ),
-    textTheme: ThemeData.light().textTheme.apply(
-      bodyColor: AppColors.lightText,
-      displayColor: AppColors.lightText,
-    ),
     appBarTheme: const AppBarTheme(
+      centerTitle: true,
       backgroundColor: AppColors.lightBackground,
       foregroundColor: AppColors.lightText,
-      elevation: 0,
+      titleTextStyle: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.w500,
+        color: AppColors.lightText,
+      ),
     ),
   );
 
   static final ThemeData darkTheme = ThemeData(
+    dividerColor: AppColors.lightPrimary,
+    dividerTheme: DividerThemeData(color: AppColors.lightPrimary),
     useMaterial3: true,
     brightness: Brightness.dark,
     scaffoldBackgroundColor: AppColors.darkBackground,
@@ -33,14 +40,15 @@ class AppTheme {
       surface: AppColors.darkBackground,
       onSurface: AppColors.darkText,
     ),
-    textTheme: ThemeData.dark().textTheme.apply(
-      bodyColor: AppColors.darkText,
-      displayColor: AppColors.darkText,
-    ),
     appBarTheme: const AppBarTheme(
+      centerTitle: true,
       backgroundColor: AppColors.darkBackground,
       foregroundColor: AppColors.darkText,
-      elevation: 0,
+      titleTextStyle: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.w500,
+        color: AppColors.darkText,
+      ),
     ),
   );
 }
