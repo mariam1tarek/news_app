@@ -15,6 +15,7 @@ class AppTheme {
       brightness: Brightness.light,
       surface: AppColors.lightBackground,
       onSurface: AppColors.lightText,
+      secondary: AppColors.lightPrimary
     ),
     appBarTheme: const AppBarTheme(
       centerTitle: true,
@@ -39,6 +40,8 @@ class AppTheme {
       brightness: Brightness.dark,
       surface: AppColors.darkBackground,
       onSurface: AppColors.darkText,
+      secondary: AppColors.darkPrimary
+
     ),
     appBarTheme: const AppBarTheme(
       centerTitle: true,
