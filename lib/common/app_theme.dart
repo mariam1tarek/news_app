@@ -15,7 +15,7 @@ class AppTheme {
       brightness: Brightness.light,
       surface: AppColors.lightBackground,
       onSurface: AppColors.lightText,
-      secondary: AppColors.lightPrimary
+      secondary: AppColors.lightPrimary,
     ),
     appBarTheme: const AppBarTheme(
       centerTitle: true,
@@ -26,6 +26,10 @@ class AppTheme {
         fontWeight: FontWeight.w500,
         color: AppColors.lightText,
       ),
+    ),
+    tabBarTheme: const TabBarThemeData(
+      labelColor: AppColors.lightText,
+      unselectedLabelColor: AppColors.lightText,
     ),
   );
 
@@ -40,8 +44,7 @@ class AppTheme {
       brightness: Brightness.dark,
       surface: AppColors.darkBackground,
       onSurface: AppColors.darkText,
-      secondary: AppColors.darkPrimary
-
+      secondary: AppColors.darkPrimary,
     ),
     appBarTheme: const AppBarTheme(
       centerTitle: true,
@@ -52,6 +55,10 @@ class AppTheme {
         fontWeight: FontWeight.w500,
         color: AppColors.darkText,
       ),
+    ),
+    tabBarTheme: const TabBarThemeData(
+      labelColor: AppColors.darkText,
+      unselectedLabelColor: AppColors.darkText,
     ),
   );
 }

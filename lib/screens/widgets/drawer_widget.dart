@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/common/app_colors.dart';
 import 'package:news_app/common/theme_controller.dart';
+import 'package:news_app/screens/provider/main_screen_provider.dart';
+import 'package:provider/provider.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
@@ -48,12 +50,16 @@ class DrawerWidget extends StatelessWidget {
                     Icons.home_outlined,
                     color: AppColors.darkText,
                   ),
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
+
+                  onTap: () =>
+                  { Provider.of<MainScreenProvider>(
+                    context,
+                    listen: false,
+                  ).changeCategory(null),
+                    Navigator.of(context).pop()
+                  }
                 ),
                 Divider(color: Colors.white, endIndent: 16.w, indent: 16.w),
-
 
                 Padding(
                   padding: EdgeInsets.symmetric(
