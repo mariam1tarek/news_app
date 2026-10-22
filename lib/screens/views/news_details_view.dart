@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/screens/provider/main_screen_provider.dart';
 import 'package:news_app/screens/widgets/article_body.dart';
+import 'package:news_app/screens/widgets/error_widget.dart';
 import 'package:provider/provider.dart';
 
 class NewsDetailsView extends StatefulWidget {
@@ -28,6 +29,16 @@ class _NewsDetailsViewState extends State<NewsDetailsView> {
       builder: (BuildContext context, MainScreenProvider provider, Widget? child) {
         if (provider.isSourcesLoading) {
           return Center(child: CircularProgressIndicator(color: Theme.of(context).colorScheme.secondary,));
+        }
+        if(provider.sourcesErrorMessage != null){
+          return Center(
+            child: CustomErrorWidget(
+              errorMessage: provider.sourcesErrorMessage!,
+              onRefresh: () {
+                Provider.of<MainScreenProvider>(context, listen: false).getSources();
+              },
+            ),
+          );
         }
         if ((provider.sources ?? []).isNotEmpty) {
           return DefaultTabController(
