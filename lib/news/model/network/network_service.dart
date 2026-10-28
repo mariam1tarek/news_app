@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:news_app/common/app_colors.dart';
 import 'package:news_app/common/app_consts.dart';
 import 'package:news_app/common/error/error_model.dart';
 import 'package:news_app/news/model/models/article_model.dart';
@@ -11,13 +10,13 @@ import 'package:news_app/news/model/network/endpoints.dart';
 
 
 class NetworkService {
-  static Dio dio = Dio(
+   Dio dio = Dio(
     BaseOptions(
       baseUrl: AppConsts.baseUrl,
       queryParameters: {"apiKey": AppConsts.apiKey},
     ),
   );
-  static Future<(ErrorModel?,List<Sources>?)> getSources(String category) async {
+   Future<(ErrorModel?,List<Sources>?)> getSources(String category) async {
     try {
       Response response = await dio.get(
         Endpoints.sourcesEndpoint,
@@ -42,7 +41,7 @@ class NetworkService {
     }
   }
 
-  static Future<(ErrorModel?,List<Articles>?)> gerArticles(String sourceId) async {
+   Future<(ErrorModel?,List<Articles>?)> gerArticles(String sourceId) async {
     try {
       Response response = await dio.get(
         Endpoints.articlesEndpoint,

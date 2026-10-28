@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/news/view/widgets/article_body.dart';
 import 'package:news_app/news/view/widgets/error_widget.dart';
+import 'package:news_app/news/view_model/main_layer_cubit/main_layer_cubit.dart';
 import 'package:news_app/news/view_model/provider/main_screen_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -28,9 +30,13 @@ class _NewsDetailsViewState extends State<NewsDetailsView> {
     return Consumer<MainScreenProvider>(
       builder: (BuildContext context, MainScreenProvider provider, Widget? child) {
         if (provider.isSourcesLoading) {
-          return Center(child: CircularProgressIndicator(color: Theme.of(context).colorScheme.secondary,));
+          return Center(
+            child: CircularProgressIndicator(
+              color: Theme.of(context).colorScheme.secondary,
+            ),
+          );
         }
-        if(provider.sourcesErrorMessage != null){
+        if (provider.sourcesErrorMessage != null) {
           return Center(
             child: CustomErrorWidget(
               errorMessage: provider.sourcesErrorMessage!,
@@ -68,8 +74,11 @@ class _NewsDetailsViewState extends State<NewsDetailsView> {
                   child: TabBarView(
                     children: List.generate(
                       provider.sources!.length,
-                          (index) => ArticleBody(
-                        sourceID: provider.sources![index].id ?? "",
+                          (index) => BlocProvider(
+                        create: (context) => MainLayerCubit(),
+                        child: ArticleBody(
+                          sourceID: provider.sources![index].id ?? "",
+                        ),
                       ),
                     ),
                   ),

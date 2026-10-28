@@ -6,6 +6,8 @@ import 'package:news_app/news/model/models/source_model.dart';
 import 'package:news_app/news/model/network/network_service.dart';
 
 class MainScreenProvider extends ChangeNotifier{
+  final NetworkService networkService = NetworkService();
+
   CategoryEnums? categoryEnum;
   List<Sources>? sources;
   bool isSourcesLoading=false;
@@ -19,12 +21,13 @@ class MainScreenProvider extends ChangeNotifier{
     categoryEnum= newCategory;
     notifyListeners();
   }
-  getSources()async{
+
+  Future<void> getSources()async{
     sourcesErrorMessage=null;
     isSourcesLoading=true;
     notifyListeners();
     if(categoryEnum!=null){
-      (ErrorModel?,List<Sources>?) response= await NetworkService.getSources(categoryEnum!.name);
+      (ErrorModel?,List<Sources>?) response= await networkService.getSources(categoryEnum!.name);
       if(response.$1!=null){
         sourcesErrorMessage=response.$1!.message;
       } else if (response.$2!= null){
@@ -43,9 +46,9 @@ class MainScreenProvider extends ChangeNotifier{
     isArticleLoading=true;
     notifyListeners();
     if(categoryEnum!=null){
-      (ErrorModel?,List<Articles>?) response= await NetworkService.gerArticles(sourceId);
+      (ErrorModel?,List<Articles>?) response= await networkService.gerArticles(sourceId);
       if(response.$1!=null){
-        //TODO:handel error
+
         articlesErrorMessage=response.$1!.message;
       } else if (response.$2!= null){
         print('--->> ${response?.$2!.length}');
@@ -57,5 +60,4 @@ class MainScreenProvider extends ChangeNotifier{
     isArticleLoading=false;
     notifyListeners();
   }
-
 }
