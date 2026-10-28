@@ -4,9 +4,11 @@ import 'package:dio/dio.dart';
 import 'package:news_app/common/app_colors.dart';
 import 'package:news_app/common/app_consts.dart';
 import 'package:news_app/common/error/error_model.dart';
-import 'package:news_app/models/article_model.dart';
-import 'package:news_app/models/source_model.dart';
-import 'package:news_app/network/endpoints.dart';
+import 'package:news_app/news/model/models/article_model.dart';
+import 'package:news_app/news/model/models/source_model.dart';
+import 'package:news_app/news/model/network/endpoints.dart';
+
+
 
 class NetworkService {
   static Dio dio = Dio(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/enums/category_enums.dart';
-import 'package:news_app/screens/provider/main_screen_provider.dart';
+import 'package:news_app/news/view_model/provider/main_screen_provider.dart';
 import 'package:provider/provider.dart';
 
 class CategoryCard extends StatelessWidget {
