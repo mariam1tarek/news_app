@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:news_app/enums/category_enums.dart';
 import 'package:news_app/news/model/models/article_model.dart';
 import 'package:news_app/news/model/models/source_model.dart';

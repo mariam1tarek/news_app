@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:news_app/enums/category_enums.dart';
 import 'package:news_app/news/view/views/home_view.dart';
 import 'package:news_app/news/view/views/news_details_view.dart';
 import 'package:news_app/news/view/widgets/drawer_widget.dart';
