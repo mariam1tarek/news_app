@@ -1,3 +1,4 @@
+import 'package:news_app/common/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -87,7 +88,7 @@ class _NewsDetailsViewState extends State<NewsDetailsView> {
             ),
           );
         }
-        return const Center(child: Text("No data found"));
+        return Center(child: Text(context.tr('no_data')));
       },
     );
   }

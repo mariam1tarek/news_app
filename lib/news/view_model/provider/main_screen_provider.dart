@@ -4,9 +4,11 @@ import 'package:news_app/enums/category_enums.dart';
 import 'package:news_app/news/model/models/article_model.dart';
 import 'package:news_app/news/model/models/source_model.dart';
 import 'package:news_app/news/model/network/network_service.dart';
+import 'package:news_app/news/view_model/search/search_repository.dart';
 
 class MainScreenProvider extends ChangeNotifier{
   final NetworkService networkService = NetworkService();
+  late final SearchRepository searchRepository = SearchRepository(networkService);
 
   CategoryEnums? categoryEnum;
   List<Sources>? sources;

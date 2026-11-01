@@ -1,3 +1,4 @@
+import 'package:news_app/common/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -20,7 +21,7 @@ class CustomErrorWidget extends StatelessWidget {
           errorMessage,
           style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
         ),
-        FilledButton.icon(onPressed: onRefresh, label: Text('Refresh',style: TextStyle(fontSize: 12,fontWeight: FontWeight.w400),),icon: Icon(Icons.refresh),)
+        FilledButton.icon(onPressed: onRefresh, label: Text(context.tr('refresh'),style: TextStyle(fontSize: 12,fontWeight: FontWeight.w400),),icon: Icon(Icons.refresh),)
       ],
     );
   }

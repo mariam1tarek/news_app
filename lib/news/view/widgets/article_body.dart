@@ -1,3 +1,4 @@
+import 'package:news_app/common/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -55,7 +56,7 @@ class _ArticleBodyState extends State<ArticleBody> {
           final List<Articles> articles = state.articles ?? [];
 
           if (articles.isEmpty) {
-            return const Center(child: Text("No articles found"));
+            return Center(child: Text(context.tr('no_articles')));
           }
 
           return ListView.separated(

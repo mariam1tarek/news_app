@@ -1,10 +1,10 @@
+import 'package:news_app/common/app_strings.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/common/app_colors.dart';
 import 'package:news_app/news/model/models/article_model.dart';
 import 'package:news_app/news/view/widgets/article_bottom_sheet.dart';
-import 'package:timeago/timeago.dart' as timeago;
 
 class NewsCard extends StatelessWidget {
   const NewsCard({super.key, required this.articles});
@@ -60,7 +60,7 @@ class NewsCard extends StatelessWidget {
                 if (articles.author != null)
                   Expanded(
                     child: Text(
-                      'by: ${articles.author}',
+                      '${context.tr('by')}: ${articles.author}',
                       style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w400,
@@ -70,7 +70,7 @@ class NewsCard extends StatelessWidget {
                   ),
                 if (articles.publishedAtDate != null)
                   Text(
-                    timeago.format(articles.publishedAtDate!),
+                    context.timeAgo(articles.publishedAtDate!),
                     style: TextStyle(
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w400,

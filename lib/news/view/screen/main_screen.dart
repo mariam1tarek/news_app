@@ -1,4 +1,6 @@
+import 'package:news_app/common/app_strings.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app/news/view/search/search_screen.dart';
 import 'package:news_app/news/view/views/home_view.dart';
 import 'package:news_app/news/view/views/news_details_view.dart';
 import 'package:news_app/news/view/widgets/drawer_widget.dart';
@@ -19,12 +21,25 @@ class MainScreen extends StatelessWidget {
             appBar: AppBar(
               title: Text(
                 provider.categoryEnum == null
-                    ? "Home"
-                    : provider.categoryEnum!.name,
+                    ? context.tr('home')
+                    : context.categoryName(provider.categoryEnum!),
               ),
-              actions: const [Icon(Icons.search)],
+              actions: [
+                IconButton(
+                  icon: const Icon(Icons.search),
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => SearchScreen(
+                        repository: provider.searchRepository,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-            body: provider.categoryEnum == null ? HomeView() : NewsDetailsView(),
+            body: provider.categoryEnum == null
+                ? HomeView()
+                : NewsDetailsView(key: ValueKey(provider.categoryEnum)),
           );
         },
       ),

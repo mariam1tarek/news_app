@@ -1,3 +1,4 @@
+import 'package:news_app/common/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/news/model/models/article_model.dart';
@@ -42,7 +43,7 @@ void showArticleDetailsBottomSheet(BuildContext context, Articles article) {
             SizedBox(height: 16.h),
 
             Text(
-              article.description ?? article.content ?? 'No details available',
+              article.description ?? article.content ?? context.tr('no_details'),
               style: TextStyle(
                 fontSize: 14.sp,
                 fontWeight: FontWeight.w500,
@@ -71,7 +72,7 @@ void showArticleDetailsBottomSheet(BuildContext context, Articles article) {
                 ),
               ),
               child: Text(
-                'View Full Article',
+                context.tr('view_full'),
                 style: TextStyle(
                   fontSize: 16.sp,
                   fontWeight: FontWeight.bold,

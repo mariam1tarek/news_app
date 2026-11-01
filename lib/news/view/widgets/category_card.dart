@@ -1,3 +1,4 @@
+import 'package:news_app/common/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/enums/category_enums.dart';
@@ -32,7 +33,7 @@ class CategoryCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            category.name,
+            context.categoryName(category),
             style: TextStyle(
               fontSize: 30.sp,
               fontWeight: FontWeight.w400,
@@ -50,6 +51,7 @@ class CategoryCard extends StatelessWidget {
                 color: Colors.grey.withValues(alpha: 0.6),
               ),
               child: Row(
+                textDirection: TextDirection.ltr, // keep the arrows layout in RTL
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   if(!isEven)
@@ -68,7 +70,7 @@ class CategoryCard extends StatelessWidget {
                       horizontal: 10,
                     ),
                     child: Text(
-                      "View All",
+                      context.tr('view_all'),
                       style: TextStyle(
                         fontSize: 24.sp,
                         fontWeight: FontWeight.w500,

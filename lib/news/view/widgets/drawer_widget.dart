@@ -1,6 +1,8 @@
+import 'package:news_app/common/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/common/app_colors.dart';
+import 'package:news_app/common/language_controller.dart';
 import 'package:news_app/common/theme_controller.dart';
 import 'package:news_app/news/view_model/provider/main_screen_provider.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +26,7 @@ class DrawerWidget extends StatelessWidget {
             alignment: Alignment.center,
             color: AppColors.lightBackground,
             child: Text(
-              "News App",
+              context.tr('app_name'),
               style: TextStyle(
                 fontSize: 24.sp,
                 fontWeight: FontWeight.w700,
@@ -39,7 +41,7 @@ class DrawerWidget extends StatelessWidget {
               children: [
                 ListTile(
                   title: Text(
-                    "Go To Home",
+                    context.tr('go_home'),
                     style: TextStyle(
                       fontSize: 18.sp,
                       fontWeight: FontWeight.w700,
@@ -77,7 +79,7 @@ class DrawerWidget extends StatelessWidget {
                           ),
                           SizedBox(width: 12.w),
                           Text(
-                            "Them",
+                            context.tr('theme'),
                             style: TextStyle(
                               fontSize: 18.sp,
                               fontWeight: FontWeight.w700,
@@ -107,7 +109,7 @@ class DrawerWidget extends StatelessWidget {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text(
-                                  value,
+                                  context.tr(value.toLowerCase()),
                                   style: const TextStyle(color: Colors.white),
                                 ),
                               );
@@ -141,7 +143,7 @@ class DrawerWidget extends StatelessWidget {
                           const Icon(Icons.language, color: AppColors.darkText),
                           SizedBox(width: 12.w),
                           Text(
-                            "Language",
+                            context.tr('language'),
                             style: TextStyle(
                               fontSize: 18.sp,
                               fontWeight: FontWeight.w700,
@@ -161,7 +163,7 @@ class DrawerWidget extends StatelessWidget {
                         child: DropdownButtonHideUnderline(
                           child: DropdownButton<String>(
                             isExpanded: true,
-                            value: 'English',
+                            value: context.isArabic ? 'العربية' : 'English',
                             dropdownColor: AppColors.darkBackground,
                             icon: const Icon(
                               Icons.arrow_drop_down,
@@ -176,7 +178,12 @@ class DrawerWidget extends StatelessWidget {
                                 ),
                               );
                             }).toList(),
-                            onChanged: (newValue) {},
+                            onChanged: (newValue) {
+                              if (newValue == null) return;
+                              LanguageController.setLocale(
+                                Locale(newValue == 'العربية' ? 'ar' : 'en'),
+                              );
+                            },
                           ),
                         ),
                       ),

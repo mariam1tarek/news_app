@@ -64,4 +64,48 @@ class NetworkService {
       return (errorModel,null);
     }
   }
+
+  Future<(ErrorModel?, List<Articles>?)> searchArticles(String query) async {
+    try {
+      Response response = await dio.get(
+        Endpoints.everythingEndpoint,
+        queryParameters: {
+          "q": query,
+          "sortBy": "publishedAt",
+          "pageSize": 50,
+        },
+      );
+      if (response.statusCode == 200 &&
+          response.data != null &&
+          response.data['status'].toString().toLowerCase() == 'ok') {
+        ArticleModel articleModel = ArticleModel.fromJson(response.data);
+        return (null, articleModel.articles);
+      } else {
+        return (RequestError(errorMessage: response.data?['message']), null);
+      }
+    } on Exception catch (e) {
+      return (ErrorModel.errorHandler(e), null);
+    }
+  }
+
+  Future<(ErrorModel?, List<Articles>?)> getCategoryHeadlines(
+    String category,
+  ) async {
+    try {
+      Response response = await dio.get(
+        Endpoints.articlesEndpoint,
+        queryParameters: {"category": category, "pageSize": 100},
+      );
+      if (response.statusCode == 200 &&
+          response.data != null &&
+          response.data['status'].toString().toLowerCase() == 'ok') {
+        ArticleModel articleModel = ArticleModel.fromJson(response.data);
+        return (null, articleModel.articles);
+      } else {
+        return (RequestError(errorMessage: response.data?['message']), null);
+      }
+    } on Exception catch (e) {
+      return (ErrorModel.errorHandler(e), null);
+    }
+  }
 }

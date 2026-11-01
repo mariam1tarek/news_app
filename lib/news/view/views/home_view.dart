@@ -1,3 +1,4 @@
+import 'package:news_app/common/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/enums/category_enums.dart';
@@ -13,7 +14,7 @@ class HomeView extends StatelessWidget {
       padding: EdgeInsets.all(16.r),
       children: [
         Text(
-          "Good Morning\nHere is Some News For You.",
+          context.tr('greeting'),
           style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.w500),
         ),
         ...List.generate(

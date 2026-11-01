@@ -1,8 +1,8 @@
+import 'package:news_app/common/app_strings.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/news/model/models/article_model.dart';
-import 'package:timeago/timeago.dart' as timeago;
 
 class ArticleDetailsScreen extends StatelessWidget {
   final Articles article;
@@ -19,7 +19,7 @@ class ArticleDetailsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          article.source?.name ?? 'News Details',
+          article.source?.name ?? context.tr('news_details'),
           style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -59,14 +59,14 @@ class ArticleDetailsScreen extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    'By ',
+                    '${context.tr('by')} ',
                     style: TextStyle(
                       fontSize: 13.sp,
                       color: secondaryTextColor,
                     ),
                   ),
                   Text(
-                    article.author ?? 'Unknown Author',
+                    article.author ?? context.tr('unknown_author'),
                     style: TextStyle(
                       fontSize: 13.sp,
                       fontWeight: FontWeight.w600,
@@ -78,7 +78,7 @@ class ArticleDetailsScreen extends StatelessWidget {
               SizedBox(height: 4.h),
               if (article.publishedAtDate != null)
                 Text(
-                  timeago.format(article.publishedAtDate!),
+                  context.timeAgo(article.publishedAtDate!),
                   style: TextStyle(
                     fontSize: 12.sp,
                     color: secondaryTextColor,
@@ -132,7 +132,7 @@ class ArticleDetailsScreen extends StatelessWidget {
 
               Text(
                 article.source?.name != null
-                    ? 'National headlines from ${article.source!.name} - Catch up on developing stories.'
+                    ? context.tr('national_headlines', args: {'source': article.source!.name!})
                     : '',
                 style: TextStyle(
                   fontSize: 11.sp,
@@ -143,7 +143,7 @@ class ArticleDetailsScreen extends StatelessWidget {
               SizedBox(height: 20.h),
 
               Text(
-                article.content ?? article.description ?? 'No additional content available.',
+                article.content ?? article.description ?? context.tr('no_content'),
                 style: TextStyle(
                   fontSize: 16.sp,
                   height: 1.65,
